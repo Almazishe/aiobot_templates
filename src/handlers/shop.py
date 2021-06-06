@@ -1,14 +1,17 @@
+import logging
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message, CallbackQuery
-from bot import dp
-from keyboards.inlines import choice, product_keyboard
-from keyboards.callbacks import buy_callback
+from src.bot import dp
+from src.keyboards.inlines import choice, product_keyboard, create_product_choice_markup
+from src.keyboards.callbacks import buy_callback
+from src.models.products import Product
 
 
 @dp.message_handler(Command("products"))
 async def cmd_products(message: Message):
+    products = await Product.all()
     await message.answer(text="We have such products",
-                         reply_markup=choice)
+                         reply_markup=create_product_choice_markup(products))
 
 
 @dp.callback_query_handler(buy_callback.filter())

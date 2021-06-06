@@ -9,6 +9,7 @@ python = "3.9.5"
 aiogram = "^2.13"
 requests = "^2.25.1"
 python-dotenv = "^0.17.1"
+tortoise-orm = {extras = ["asyncpg"], version = "^0.17.4"}
 
 [tool.poetry.dev-dependencies]
 

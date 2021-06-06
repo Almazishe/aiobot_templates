@@ -1,7 +1,7 @@
 from aiogram import types
 from aiogram.dispatcher.filters import Command, Text
-from bot import dp
-from keyboards import menu
+from src.bot import dp
+from src.keyboards import menu
 
 
 @dp.message_handler(Command('menu'))

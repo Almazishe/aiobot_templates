@@ -3,13 +3,12 @@ import logging
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Command
-from bot import dp
-from states.test import Test
+from src.bot import dp
+from src.states.test import Test
 
 
 @dp.message_handler(Command('test'), state=None)
 async def cmd_test(message: types.Message):
-    logging.info(message.text)
     await message.answer("What is your name?")
     await Test.first_name.set()
 
@@ -37,3 +36,5 @@ async def wait_first_name(message: types.Message, state: FSMContext):
     data['phone'] = phone
     text = f"🤟🏿Welcome {data['first_name']} {data['last_name']} with phone number {data['phone']}👰"
     await message.answer(text)
+    await state.finish()
+
